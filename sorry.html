@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Heartfelt Apology</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 182, 193, 0.7);
+            transform: rotate(45deg);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .heart:before,
+        .heart:after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 182, 193, 0.7);
+            border-radius: 50%;
+        }
+
+        .heart:before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart:after {
+            top: 0;
+            left: -10px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(45deg); opacity: 0; }
+            50% { transform: translateY(-100vh) rotate(45deg); opacity: 1; }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 20px 0;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            animation: slideUp 1s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .message {
+            color: #34495e;
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .promises {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 5px solid #e74c3c;
+        }
+
+        .promises h3 {
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+
+        .promise-item {
+            margin: 15px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .promise-item:hover {
+            transform: translateX(10px);
+        }
+
+        .love-note {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            color: #2c3e50;
+            font-style: italic;
+            font-size: 1.1em;
+        }
+
+        .signature {
+            margin-top: 40px;
+            font-size: 1.3em;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .interactive-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .interactive-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .photo-frame {
+            width: 200px;
+            height: 200px;
+            border: 10px solid #fff;
+            border-radius: 15px;
+            margin: 20px auto;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="hearts"></div>
+    
+    <div class="container">
+        <div class="card">
+            <h1>💝 I'm Sorry, Mom & Dad 💝</h1>
+            <p class="subtitle">A heartfelt apology from your child who loves you deeply</p>
+            
+            <div class="message">
+                <p>Dear Mom and Dad,</p>
+                <p>I know I've disappointed you, and I can't express how sorry I am. Your trust means everything to me, and I realize I've let you both down. I've been thinking about my actions and the pain I've caused, apap ko lagta hoga ki me mujhe pharak nhi padta hai lekin mujhe sach me bahut bura lagta hai ki me galat kaam kyu kiya aapko phle hi bata deta me.
+                    I want you to know that I take full responsibility.</p>
+                
+                <p>You've given me so much love, support, and guidance throughout my life. You've always been there for me, believing in me even when I didn't believe in myself. I'm ashamed that I've repaid your love with behavior that has hurt you.
+                    
+                <p>Mene aap logo ko bahut parshan kiya hai mujhe pata hai lekin me aap logo ko ek achi life deke rahunga promise karta hu me</p>
+            </div>
+
+            <div class="promises">
+                <h3>My Promises to You:</h3>
+                <div class="promise-item">
+                    ✨ I will be more honest and will surely be on good track
+                </div>
+                <div class="promise-item">
+                    🌱 I will work on improving myself and learning from this mistake
+                </div>
+                <div class="promise-item">
+                    🤝 I will make you proud 
+                </div>
+                <div class="promise-item">
+                    💪 I will prove through my actions that I can be trusted again
+                </div>
+                <div class="promise-item">
+                    ❤️ I will never do this again and will never do this again
+                </div>
+            </div>
+
+            <div class="love-note">
+                "I know saying sorry isn't enough, but please know that every word comes from my heart. I love you both more than words can express, and I'm committed to earning back your trust and making you proud of me again."
+            </div>
+
+            <div class="photo-frame">
+                <img src="your-photo.jpg" alt="Our Family" style="width: 100%; height: 100%; object-fit: cover; border-radius: 5px;">
+            </div>
+
+                
+            
+
+            <button class="interactive-button" onclick="showSpecialMessage()">
+                Click for a Special Message 💌
+            </button>
+
+            <div id="specialMessage" class="hidden">
+                <div style="margin-top: 30px; padding: 25px; background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); border-radius: 15px;">
+                    <h3 style="color: #2c3e50; margin-bottom: 15px;">You Mean the World to Me</h3>
+                    <p style="color: #34495e; line-height: 1.6;">
+                        Daddy mummy me bura nhi hu aur na hi mujhe acha lagta hai aap dono ko parshan karna, me manta hu ki me galat tarck pe chala gaya tha lekin me ab sab kuch prove karke dekhaunga.
+                        Me pakka aap logo ko ek na ek din sab karke dekhaunga jo mujhse galti ho gayi hai vo maafi ke layak nhi hai lekin me promise karta hu ki me ab kuch acha karke dekhaunga ek achi job karke sab ko dekahunga ki me bura nahi hu me bss kuch galti kar di thi jisse me aur bura hota rha 
+                        Ab sirf 3 aim hai mere :- 
+                        <p >1. Aap dono ko khush rakhna </p>
+                        <p >2. Apne liye ek achi job lena</p>
+                        <p >3. jitna gold mene churaya hai usse zyada banke dena❤️ </p>
+                    </p>
+                </div>
+            </div>
+
+            <div class="signature">
+                With all my love and deepest regret,<br>
+                    Gunni❤️
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            document.getElementById('hearts').appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        // Create hearts periodically
+        setInterval(createHeart, 1000);
+
+        // Show special message
+        function showSpecialMessage() {
+            const message = document.getElementById('specialMessage');
+            message.classList.remove('hidden');
+            message.style.animation = 'slideUp 0.8s ease-out';
+            
+            // Add some extra hearts when clicked
+            for(let i = 0; i < 10; i++) {
+                setTimeout(createHeart, i * 100);
+            }
+        }
+
+        // Add some initial hearts
+        for(let i = 0; i < 5; i++) {
+            setTimeout(createHeart, i * 300);
+        }
+    </script>
+</body>
+</html>
